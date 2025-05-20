@@ -1,6 +1,6 @@
-//merge sort
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 void merge(int *left,int left_l,int *right,int right_l,int *result){
     int i=0;
     int j=0;
@@ -41,13 +41,23 @@ int *  merge_sort(int *A,int n){
     return sorted;
 }
 
-int main(){
-    int A[]={1,34,56,22,3333,456,12234,0};
-    int n=sizeof(A)/sizeof(A[0]);
+int main(void){
+    int n=10000;
+    int A[n];
+    for(int i=0;i<n;i++){
+        A[i]=rand()%10000;
+    }
+    
+    
+    clock_t start=clock();
     int *sorted=merge_sort(A, n);
+    clock_t end=clock();
+    double time_taken=(double)(end-start)/CLOCKS_PER_SEC;
     
     for(int i=0;i<n;i++){
         printf("%d ",sorted[i]);
     }
+    
+    printf("\nTIME TAKEN: %6f",time_taken);
     
 }
